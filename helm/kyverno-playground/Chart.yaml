@@ -7,13 +7,13 @@ apiVersion: v2
 appVersion: 0.0.1
 
 # Make sure your name DOES NOT end in "app" or "-app".
-name: {APP-NAME}
+name: kyverno-playground
 
 # Please describe what the app provides in a sentence or two.
 description: Please add description
 
 # URL of the GitHub repository that is the source of this Chart.yaml file.
-home: https://github.com/giantswarm/{APP-NAME}
+home: https://github.com/giantswarm/kyverno-playground
 
 # If you have an icon/logo, you should add it to https://github.com/giantswarm/web-assets
 # and set the final URL here.
@@ -27,11 +27,11 @@ annotations:
   io.giantswarm.application.audience: all
   # Adapt to 'true' if Giant Swarm takes responsibility for this app where it's deplyed
   io.giantswarm.application.managed: "false"
-  # used through .Chart.Annotations . Please replace TEAM-NAME with your team's short name, e. g. 'shield'  for team-shield
-  io.giantswarm.application.team: TEAM-NAME
+  # used through .Chart.Annotations.
+  io.giantswarm.application.team: shield
   # Metadata for artifacthub.io, where Giant Swarm publishes all public charts
   # (see https://github.com/giantswarm/roadmap/issues/3940)
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
     - name: Support
-      url: https://github.com/giantswarm/{APP-NAME}/issues
+      url: https://github.com/giantswarm/kyverno-playground/issues
