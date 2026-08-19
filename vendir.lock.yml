@@ -1,0 +1,16 @@
+apiVersion: vendir.k14s.io/v1alpha1
+directories:
+- contents:
+  - git:
+      commitTitle: 'chore(deps): Bump github.com/envoyproxy/go-control-plane/envoy
+        (#1342)...'
+      sha: bddceb0c3b4a6aa467304d6a3b620b62f8ea2c4b
+      tags:
+      - v0.10.3-19-gbddceb0
+    path: .
+  path: vendor
+- contents:
+  - directory: {}
+    path: .
+  path: helm/kyverno-playground/templates
+kind: LockConfig

@@ -4,7 +4,7 @@
 apiVersion: v2
 
 # Version of the packaged app
-appVersion: 0.0.1
+appVersion: v0.10.3
 
 # Make sure your name DOES NOT end in "app" or "-app".
 name: kyverno-playground
