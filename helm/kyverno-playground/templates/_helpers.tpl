@@ -1,81 +1,35 @@
+{{/* vim: set filetype=mustache: */}}
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "kyverno-playground.name" -}}
+{{- define "name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
-{{- end }}
-
-{{/*
-Create a default fully qualified app name.
-We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-If release name contains chart name it will be used as a full name.
-*/}}
-{{- define "kyverno-playground.fullname" -}}
-{{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- $name := default .Chart.Name .Values.nameOverride }}
-{{- if contains $name .Release.Name }}
-{{- .Release.Name | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-{{- end }}
-{{- end }}
 {{- end }}
 
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "kyverno-playground.chart" -}}
-{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
-{{- end }}
+{{- define "chart" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 
 {{/*
 Common labels
 */}}
-{{- define "kyverno-playground.labels" -}}
-helm.sh/chart: {{ include "kyverno-playground.chart" . }}
-{{ include "kyverno-playground.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
+{{- define "labels.common" -}}
+app: {{ include "name" . | quote }}
+{{ include "labels.selector" . }}
+app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-application.giantswarm.io/team: {{ index .Chart.Annotations "io.giantswarm.application.team" | quote }}
-{{- with .Values.global.labels }}
-{{ toYaml . }}
+application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
+helm.sh/chart: {{ include "chart" . | quote }}
+giantswarm.io/service-type: "managed"
 {{- end -}}
-{{- end }}
 
 {{/*
 Selector labels
 */}}
-{{- define "kyverno-playground.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "kyverno-playground.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "kyverno-playground.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "kyverno-playground.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
-
-{{/*
-MCP server fully qualified name
-*/}}
-{{- define "kyverno-playground.mcp.fullname" -}}
-{{- printf "%s-mcp" (include "kyverno-playground.fullname" .) | trunc 63 | trimSuffix "-" }}
-{{- end }}
-
-{{/*
-MCP selector labels
-*/}}
-{{- define "kyverno-playground.mcp.selectorLabels" -}}
-app.kubernetes.io/name: {{ printf "%s-mcp" (include "kyverno-playground.name" .) }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- end }}
+{{- define "labels.selector" -}}
+app.kubernetes.io/name: {{ include "name" . | quote }}
+app.kubernetes.io/instance: {{ .Release.Name | quote }}
+{{- end -}}

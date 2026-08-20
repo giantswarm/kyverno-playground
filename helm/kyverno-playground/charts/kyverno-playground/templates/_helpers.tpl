@@ -1,0 +1,80 @@
+{{/*
+Expand the name of the chart.
+*/}}
+{{- define "kyverno-playground.name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+If release name contains chart name it will be used as a full name.
+*/}}
+{{- define "kyverno-playground.fullname" -}}
+{{- if .Values.fullnameOverride }}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- else }}
+{{- $name := default .Chart.Name .Values.nameOverride }}
+{{- if contains $name .Release.Name }}
+{{- .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- else }}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{/*
+Create chart name and version as used by the chart label.
+*/}}
+{{- define "kyverno-playground.chart" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Common labels
+*/}}
+{{- define "kyverno-playground.labels" -}}
+helm.sh/chart: {{ include "kyverno-playground.chart" . }}
+{{ include "kyverno-playground.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- with .Values.global.labels }}
+{{ toYaml . }}
+{{- end -}}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "kyverno-playground.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "kyverno-playground.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "kyverno-playground.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "kyverno-playground.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
+
+{{/*
+MCP server fully qualified name
+*/}}
+{{- define "kyverno-playground.mcp.fullname" -}}
+{{- printf "%s-mcp" (include "kyverno-playground.fullname" .) | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+MCP selector labels
+*/}}
+{{- define "kyverno-playground.mcp.selectorLabels" -}}
+app.kubernetes.io/name: {{ printf "%s-mcp" (include "kyverno-playground.name" .) }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
