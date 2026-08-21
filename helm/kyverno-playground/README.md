@@ -31,8 +31,6 @@ Please add description
 | kyverno-playground.autoscaling.minReplicas | int | `1` | Min number of replicas |
 | kyverno-playground.autoscaling.targetCPUUtilizationPercentage | int | `80` | Target CPU utilisation |
 | kyverno-playground.autoscaling.targetMemoryUtilizationPercentage | string | `nil` | Target Memory utilisation |
-| kyverno-playground.clusterRoles | list | `[]` | Cluster roles |
-| kyverno-playground.config.cluster.enabled | bool | `false` | Enable connected cluster mode |
 | kyverno-playground.config.engine.builtinCrds | list | `[]` | Builtin CRDs enabled (`argocd`, `cert-manager`, `prometheus-operator`, `tekton-pipelines`) |
 | kyverno-playground.config.engine.localCrds | list | `[]` | Paths to folders containing yaml definitions for CRDs |
 | kyverno-playground.config.gin.cors | bool | `false` | Gin cors middleware |
@@ -41,9 +39,7 @@ Please add description
 | kyverno-playground.config.gin.mode | string | `"release"` | Gin mode (`release` or `debug`) |
 | kyverno-playground.config.server.host | string | `"0.0.0.0"` | Server host |
 | kyverno-playground.config.server.port | int | `8080` | Server port |
-| kyverno-playground.config.ui.sponsor | string | `""` | Sponsor name |
 | kyverno-playground.config.versions | list | `[]` | list of additional Kyverno Playground versions |
-| kyverno-playground.extraArgs | object | `{}` | Additonal container arguments |
 | kyverno-playground.fullnameOverride | string | `""` | Full name override |
 | kyverno-playground.global.labels | object | `{"application.giantswarm.io/team":"shield","giantswarm.io/service-type":"managed"}` | additional labels added on each resource |
 | kyverno-playground.image.pullPolicy | string | `"IfNotPresent"` | Image pull policy |
@@ -59,8 +55,6 @@ Please add description
 | kyverno-playground.mcp.service.port | int | `8080` | MCP service port |
 | kyverno-playground.mcp.service.type | string | `"ClusterIP"` | MCP service type |
 | kyverno-playground.nameOverride | string | `""` | Name override |
-| kyverno-playground.networkPolicy.allowClusterDNS | bool | `true` | Allow DNS to in-cluster CoreDNS while keeping app egress internet-only |
-| kyverno-playground.networkPolicy.enabled | bool | `false` | Enable egress restriction for the playground pods |
 | kyverno-playground.nodeSelector | object | `{}` | Node selector |
 | kyverno-playground.podAnnotations | object | `{}` | Pod annotations |
 | kyverno-playground.podLabels | object | `{}` | Additional labels to add to each pod |
@@ -70,14 +64,12 @@ Please add description
 | kyverno-playground.replicaCount | int | `1` | Number of pod replicas |
 | kyverno-playground.resources.limits | string | `nil` | Container resource limits |
 | kyverno-playground.resources.requests | string | `nil` | Container resource requests |
-| kyverno-playground.roles | list | `[]` | Cluster roles |
 | kyverno-playground.securityContext | object | See [values.yaml](values.yaml) | Container security context |
 | kyverno-playground.service.port | int | `8080` | Service port |
 | kyverno-playground.service.type | string | `"ClusterIP"` | Service type |
 | kyverno-playground.serviceAccount.annotations | object | `{}` | Service account annotations |
 | kyverno-playground.serviceAccount.create | bool | `true` | Create service account |
 | kyverno-playground.serviceAccount.name | string | `""` | Service account name (required if `serviceAccount.create` is `false`) |
-| kyverno-playground.sponsor | string | `""` | Optional sponsor text |
 | kyverno-playground.tolerations | list | `[]` | Tolerations |
 | kyverno-playground.tufRootMountPath | string | `"/.sigstore"` | A writable volume to use for the TUF root initialization. |
 | mcp.httproute.annotations | object | `{}` | Additional HTTPRoute annotations |
