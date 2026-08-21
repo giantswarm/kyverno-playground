@@ -219,29 +219,6 @@ kyverno-playground:
     # -- Allow DNS to in-cluster CoreDNS while keeping app egress internet-only
     allowClusterDNS: true
 
-  # -- Cluster roles
-  clusterRoles: []
-    # - name: read-all
-    #   apiGroups:
-    #     - '*'
-    #   resources:
-    #     - '*'
-
-  # -- Cluster roles
-  roles: []
-    # - name: read-all
-    #   namespaces:
-    #     - ns-1
-    #     - ns-2
-    #   apiGroups:
-    #     - '*'
-    #   resources:
-    #     - '*'
-
-  # -- Additonal container arguments
-  extraArgs: {}
-    # cluster: true
-
   config:
     gin:
       # -- Gin mode (`release` or `debug`)
@@ -257,13 +234,6 @@ kyverno-playground:
       host: '0.0.0.0'
       # -- Server port
       port: 8080
-    cluster:
-      # -- Enable connected cluster mode
-      enabled: false
-      # TODO: kube config flags
-    ui:
-      # -- Sponsor name
-      sponsor: ''
     engine:
       # -- Builtin CRDs enabled (`argocd`, `cert-manager`, `prometheus-operator`, `tekton-pipelines`)
       builtinCrds: []
