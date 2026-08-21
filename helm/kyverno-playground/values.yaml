@@ -79,7 +79,6 @@ mcp:
         #  request: 30s
         #  backendRequest: 30s
 
-
 # Additional options defined in charts/kyverno-playground/values.yaml. Upstream docs: https://github.com/kyverno/playground
 kyverno-playground:
   image:
@@ -100,9 +99,6 @@ kyverno-playground:
 
   # -- Number of pod replicas
   replicaCount: 1
-
-  # -- Optional sponsor text
-  sponsor: ""
 
   # -- A writable volume to use for the TUF root initialization.
   tufRootMountPath: /.sigstore
@@ -211,13 +207,6 @@ kyverno-playground:
 
   # -- Affinity
   affinity: {}
-
-  networkPolicy:
-    # -- Enable egress restriction for the playground pods
-    enabled: false
-
-    # -- Allow DNS to in-cluster CoreDNS while keeping app egress internet-only
-    allowClusterDNS: true
 
   config:
     gin:
