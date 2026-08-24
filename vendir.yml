@@ -7,7 +7,7 @@ directories:
   - path: .
     git:
       url: https://github.com/kyverno/playground
-      ref: kyverno-playground-chart-v0.10.2
+      ref: kyverno-playground-chart-v0.10.5
     includePaths:
     - charts/kyverno-playground/**/*
     newRootPath: charts/kyverno-playground

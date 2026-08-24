@@ -2,10 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: add network policies (#1319)...
-      sha: 1cabd99ee7a46c3117088aee1c4676061e975cd1
+      commitTitle: 'fix: disable httproute by default (#1346)...'
+      sha: 5774a6a80aaa0fc1074e41eff4fa0afe4d39dff1
       tags:
-      - v0.10.3
+      - kyverno-playground-chart-v0.10.5
     path: .
   path: helm/kyverno-playground/charts/kyverno-playground
 kind: LockConfig
