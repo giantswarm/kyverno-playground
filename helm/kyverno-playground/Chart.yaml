@@ -27,7 +27,7 @@ annotations:
   io.giantswarm.application.audience: all
   # Adapt to 'true' if Giant Swarm takes responsibility for this app where it's deplyed
   io.giantswarm.application.managed: "false"
-  # used through .Chart.Annotations . Please replace TEAM-NAME with your team's short name, e. g. 'shield'  for team-shield
+  # used through .Chart.Annotations.
   io.giantswarm.application.team: shield
   # Metadata for artifacthub.io, where Giant Swarm publishes all public charts
   # (see https://github.com/giantswarm/roadmap/issues/3940)
