@@ -2,16 +2,12 @@ apiVersion: vendir.k14s.io/v1alpha1
 kind: Config
 minimumRequiredVersion: 0.12.0
 directories:
-- path: vendor
+- path: helm/kyverno-playground/charts/kyverno-playground
   contents:
   - path: .
     git:
       url: https://github.com/kyverno/playground
-      ref: main
+      ref: kyverno-playground-chart-v0.10.5
     includePaths:
     - charts/kyverno-playground/**/*
-- path: helm/kyverno-playground/templates
-  contents:
-  - path: .
-    directory:
-      path: vendor/charts/kyverno-playground/templates
+    newRootPath: charts/kyverno-playground

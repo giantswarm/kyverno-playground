@@ -4,7 +4,7 @@
 apiVersion: v2
 
 # Version of the packaged app
-appVersion: 0.0.1
+appVersion: v0.10.4
 
 # Make sure your name DOES NOT end in "app" or "-app".
 name: kyverno-playground
@@ -35,3 +35,6 @@ annotations:
   artifacthub.io/links: |
     - name: Support
       url: https://github.com/giantswarm/kyverno-playground/issues
+dependencies:
+  - name: kyverno-playground
+    version: 0.10.5

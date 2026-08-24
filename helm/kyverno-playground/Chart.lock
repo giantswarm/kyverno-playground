@@ -1,0 +1,6 @@
+dependencies:
+- name: kyverno-playground
+  repository: ""
+  version: 0.10.5
+digest: sha256:33d90aa5ee82a30d769ff90d6f45122b7227e2e365071c3d8bd86b94bbfca988
+generated: "2026-08-24T11:09:43.957445+02:00"
