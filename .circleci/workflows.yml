@@ -21,6 +21,10 @@ workflows:
         app_catalog: giantswarm-catalog
         app_catalog_test: giantswarm-test-catalog
         chart: kyverno-playground
+        # `appVersion` is the version of the packaged application, and this chart
+        # packages an app built elsewhere, so that app's version is what
+        # Chart.yaml declares. Keep it; the chart version is still stamped.
+        override_app_version: false
         push_to_appcatalog: false
         push_to_oci_registry: false
         persist_chart_archive: true
@@ -56,16 +60,40 @@ workflows:
           branches:
             ignore: /.*/
 
+    # Branch chart push (opt-in): publish the dev chart after tests + the amd64
+    # branch image, coupled with push-to-registries above.
+    - architect/push-to-app-catalog:
+        executor: app-build-suite
+        context: architect
+        name: push-chart
+        app_catalog: giantswarm-catalog
+        app_catalog_test: giantswarm-test-catalog
+        chart: kyverno-playground
+        # `appVersion` is the version of the packaged application, and this chart
+        # packages an app built elsewhere, so that app's version is what
+        # Chart.yaml declares. Keep it; the chart version is still stamped.
+        override_app_version: false
+        requires:
+        - execute-chart-tests
+        filters:
+          branches:
+            ignore:
+            - main
+
     # Tag: push chart after tests + the gsoci image. Intentionally does NOT
     # depend on sync-china-registry so the chart catalog can publish even if
     # the in-China Aliyun mirror is slow or fails.
     - architect/push-to-app-catalog:
         executor: app-build-suite
         context: architect
-        name: push-kyverno-playground-chart-release
+        name: push-chart-release
         app_catalog: giantswarm-catalog
         app_catalog_test: giantswarm-test-catalog
         chart: kyverno-playground
+        # `appVersion` is the version of the packaged application, and this chart
+        # packages an app built elsewhere, so that app's version is what
+        # Chart.yaml declares. Keep it; the chart version is still stamped.
+        override_app_version: false
         requires:
         - execute-chart-tests-release
         filters:
