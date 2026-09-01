@@ -8,7 +8,7 @@
 ##@ App
 
 YQ=docker run --rm -u $$(id -u) -v $${PWD}:/workdir mikefarah/yq:4.29.2
-HELM_DOCS=docker run --rm -u $$(id -u) -v $${PWD}:/helm-docs jnorwood/helm-docs:v1.11.0
+HELM_DOCS=docker run --rm -u $$(id -u) -v $${PWD}:/helm-docs jnorwood/helm-docs:v1.14.2 --sort-values-order=file
 
 ifdef APPLICATION
 DEPS := $(shell find helm/$(APPLICATION)/charts -maxdepth 2 -name "Chart.yaml" -printf "%h\n" 2>/dev/null)
@@ -22,7 +22,7 @@ lint-chart: check-env ## Runs ct against the default chart.
 	rm -rf /tmp/$(APPLICATION)-test
 	mkdir -p /tmp/$(APPLICATION)-test/helm
 	cp -a ./helm/$(APPLICATION) /tmp/$(APPLICATION)-test/helm/
-	architect helm template --dir /tmp/$(APPLICATION)-test/helm/$(APPLICATION)
+	#architect helm template --dir /tmp/$(APPLICATION)-test/helm/$(APPLICATION)
 	docker run -it --rm -v /tmp/$(APPLICATION)-test:/wd --workdir=/wd --name ct $(IMAGE) ct lint --validate-maintainers=false --charts="helm/$(APPLICATION)"
 	rm -rf /tmp/$(APPLICATION)-test
 
@@ -41,6 +41,7 @@ $(DEPS): check-env ## Update main Chart.yaml with new local dep versions.
 
 helm-docs: check-env ## Update $(APPLICATION) README.
 	$(HELM_DOCS) -c helm/$(APPLICATION) -g helm/$(APPLICATION)
+	$(HELM_DOCS) -c helm/$(APPLICATION)/charts/$(APPLICATION) -g helm/$(APPLICATION)/charts/$(APPLICATION)
 
 check-env:
 ifndef APPLICATION
