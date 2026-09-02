@@ -12,6 +12,7 @@
 # in values.yaml keep their own schema on merge.
 values:
   - helm/kyverno-playground/values.yaml
+  - helm/kyverno-playground/.schema-values.yaml
 
 draft: 2020
 indent: 4

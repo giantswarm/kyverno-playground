@@ -50,10 +50,24 @@
                         }
                     }
                 },
+                "clusterRoles": {
+                    "type": "array",
+                    "description": "Cluster roles"
+                },
                 "config": {
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
+                        "cluster": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Enable connected cluster mode"
+                                }
+                            }
+                        },
                         "engine": {
                             "type": "object",
                             "additionalProperties": false,
@@ -104,11 +118,26 @@
                                 }
                             }
                         },
+                        "ui": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "sponsor": {
+                                    "type": "string",
+                                    "description": "Sponsor name"
+                                }
+                            }
+                        },
                         "versions": {
                             "type": "array",
                             "description": "list of additional Kyverno Playground versions"
                         }
                     }
+                },
+                "extraArgs": {
+                    "type": "object",
+                    "description": "Additonal container arguments",
+                    "additionalProperties": false
                 },
                 "fullnameOverride": {
                     "type": "string",
@@ -218,6 +247,33 @@
                     "type": "array",
                     "description": "Image pull secrets"
                 },
+                "ingress": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "description": "Ingress annotations",
+                            "additionalProperties": false
+                        },
+                        "className": {
+                            "type": "string",
+                            "description": "Ingress class name"
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enable ingress"
+                        },
+                        "hosts": {
+                            "type": "array",
+                            "description": "Ingress hosts"
+                        },
+                        "tls": {
+                            "type": "array",
+                            "description": "Ingress tls"
+                        }
+                    }
+                },
                 "livenessProbe": {
                     "type": "object",
                     "description": "Liveness probe",
@@ -304,6 +360,33 @@
                                 }
                             }
                         },
+                        "ingress": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "annotations": {
+                                    "type": "object",
+                                    "description": "Ingress annotations",
+                                    "additionalProperties": false
+                                },
+                                "className": {
+                                    "type": "string",
+                                    "description": "Ingress class name"
+                                },
+                                "enabled": {
+                                    "type": "boolean",
+                                    "description": "Enable MCP ingress"
+                                },
+                                "hosts": {
+                                    "type": "array",
+                                    "description": "Ingress hosts"
+                                },
+                                "tls": {
+                                    "type": "array",
+                                    "description": "Ingress tls"
+                                }
+                            }
+                        },
                         "port": {
                             "type": "integer",
                             "description": "MCP server port"
@@ -346,6 +429,20 @@
                 "nameOverride": {
                     "type": "string",
                     "description": "Name override"
+                },
+                "networkPolicy": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "allowClusterDNS": {
+                            "type": "boolean",
+                            "description": "Allow DNS to in-cluster CoreDNS while keeping app egress internet-only"
+                        },
+                        "enabled": {
+                            "type": "boolean",
+                            "description": "Enable egress restriction for the playground pods"
+                        }
+                    }
                 },
                 "nodeSelector": {
                     "type": "object",
@@ -412,6 +509,10 @@
                             "description": "Container resource requests"
                         }
                     }
+                },
+                "roles": {
+                    "type": "array",
+                    "description": "Cluster roles"
                 },
                 "securityContext": {
                     "type": "object",
@@ -488,6 +589,10 @@
                             "description": "Service account name (required if `serviceAccount.create` is `false`)"
                         }
                     }
+                },
+                "sponsor": {
+                    "type": "string",
+                    "description": "Optional sponsor text"
                 },
                 "tolerations": {
                     "type": "array",
