@@ -42,6 +42,15 @@ Please add description
 | kyverno-playground.service.port | int | `8080` | Service port |
 | kyverno-playground.livenessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | Liveness probe |
 | kyverno-playground.readinessProbe | object | `{"httpGet":{"path":"/","port":"http"}}` | Readiness probe |
+| kyverno-playground.ingress.enabled | bool | `false` | Enable ingress |
+| kyverno-playground.ingress.className | string | `""` | Ingress class name |
+| kyverno-playground.ingress.annotations | object | `{}` | Ingress annotations |
+| kyverno-playground.ingress.hosts | list | `[]` | Ingress hosts |
+| kyverno-playground.ingress.tls | list | `[]` | Ingress tls |
+| kyverno-playground.networkPolicy.enabled | bool | `false` | Enable egress restriction for the playground pods |
+| kyverno-playground.networkPolicy.allowClusterDNS | bool | `true` | Allow DNS to in-cluster CoreDNS while keeping app egress internet-only |
+| kyverno-playground.clusterRoles | list | `[]` | Cluster roles |
+| kyverno-playground.roles | list | `[]` | Cluster roles |
 | kyverno-playground.httproute.enabled | bool | `false` | Enable HTTPRoute resource (Gateway API alternative to Ingress) Requires Gateway API CRDs (v1) installed in cluster https://gateway-api.sigs.k8s.io/ |
 | kyverno-playground.httproute.labels | object | `{}` | Additional HTTPRoute labels |
 | kyverno-playground.httproute.annotations | object | `{}` | Additional HTTPRoute annotations |
@@ -62,16 +71,25 @@ Please add description
 | kyverno-playground.config.gin.cors | bool | `false` | Gin cors middleware |
 | kyverno-playground.config.gin.logger | bool | `false` | Gin logger middleware |
 | kyverno-playground.config.gin.maxBodySize | int | `2097152` | Gin max body size |
+| kyverno-playground.config.cluster.enabled | bool | `false` | Enable connected cluster mode |
+| kyverno-playground.config.ui.sponsor | string | `""` | Sponsor name |
 | kyverno-playground.config.server.host | string | `"0.0.0.0"` | Server host |
 | kyverno-playground.config.server.port | int | `8080` | Server port |
 | kyverno-playground.config.engine.builtinCrds | list | `[]` | Builtin CRDs enabled (`argocd`, `cert-manager`, `prometheus-operator`, `tekton-pipelines`) |
 | kyverno-playground.config.engine.localCrds | list | `[]` | Paths to folders containing yaml definitions for CRDs |
 | kyverno-playground.config.versions | list | `[]` | list of additional Kyverno Playground versions |
+| kyverno-playground.extraArgs | object | `{}` | Additonal container arguments |
+| kyverno-playground.sponsor | string | `""` | Optional sponsor text |
 | kyverno-playground.mcp.enabled | bool | `false` | Enable the MCP server deployment |
 | kyverno-playground.mcp.replicaCount | int | `1` | Number of MCP server pod replicas |
 | kyverno-playground.mcp.port | int | `8080` | MCP server port |
 | kyverno-playground.mcp.service.type | string | `"ClusterIP"` | MCP service type |
 | kyverno-playground.mcp.service.port | int | `8080` | MCP service port |
+| kyverno-playground.mcp.ingress.enabled | bool | `false` | Enable MCP ingress |
+| kyverno-playground.mcp.ingress.className | string | `""` | Ingress class name |
+| kyverno-playground.mcp.ingress.annotations | object | `{}` | Ingress annotations |
+| kyverno-playground.mcp.ingress.hosts | list | `[]` | Ingress hosts |
+| kyverno-playground.mcp.ingress.tls | list | `[]` | Ingress tls |
 | kyverno-playground.mcp.httproute.enabled | bool | `false` | Enable HTTPRoute resource (Gateway API alternative to Ingress) Requires Gateway API CRDs (v1) installed in cluster https://gateway-api.sigs.k8s.io/ |
 | kyverno-playground.mcp.httproute.labels | object | `{}` | Additional HTTPRoute labels |
 | kyverno-playground.mcp.httproute.annotations | object | `{}` | Additional HTTPRoute annotations |
