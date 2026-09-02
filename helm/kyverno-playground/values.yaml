@@ -93,11 +93,57 @@ kyverno-playground:
       path: /
       port: http
 
+  ingress:
+    # -- Enable ingress
+    enabled: false
+
+    # -- Ingress class name
+    className: ""
+
+    # -- Ingress annotations
+    annotations: {}
+
+    # -- Ingress hosts
+    hosts: []
+      # - host: chart-example.local
+      #   paths:
+      #     - path: /
+      #       pathType: ImplementationSpecific
+
+    # -- Ingress tls
+    tls: []
+
+  networkPolicy:
+    # -- Enable egress restriction for the playground pods
+    enabled: false
+
+    # -- Allow DNS to in-cluster CoreDNS while keeping app egress internet-only
+    allowClusterDNS: true
+
+  # -- Cluster roles
+  clusterRoles: []
+    # - name: read-all
+    #   apiGroups:
+    #     - '*'
+    #   resources:
+    #     - '*'
+
+  # -- Cluster roles
+  roles: []
+    # - name: read-all
+    #   namespaces:
+    #     - ns-1
+    #     - ns-2
+    #   apiGroups:
+    #     - '*'
+    #   resources:
+    #     - '*'
+
   httproute:
     # -- Enable HTTPRoute resource (Gateway API alternative to Ingress)
     # Requires Gateway API CRDs (v1) installed in cluster
     # https://gateway-api.sigs.k8s.io/
-    enabled: true
+    enabled: false
     # -- Additional HTTPRoute labels
     labels: {}
     # -- Additional HTTPRoute annotations
@@ -180,6 +226,14 @@ kyverno-playground:
       logger: false
       # -- Gin max body size
       maxBodySize: 2097152
+    cluster:
+      # -- Enable connected cluster mode
+      enabled: false
+      # TODO: kube config flags
+
+    ui:
+      # -- Sponsor name
+      sponsor: ''
     server:
       # -- Server host
       host: '0.0.0.0'
@@ -197,6 +251,13 @@ kyverno-playground:
       # - name: Kyverno v1.12
       #   url: https://playground.kyverno.io/v1.12/
 
+  # -- Additonal container arguments
+  extraArgs: {}
+    # cluster: true
+
+  # -- Optional sponsor text
+  sponsor: ""
+
   mcp:
     # -- Enable the MCP server deployment
     enabled: false
@@ -213,6 +274,26 @@ kyverno-playground:
 
       # -- MCP service port
       port: 8080
+
+    ingress:
+      # -- Enable MCP ingress
+      enabled: false
+
+      # -- Ingress class name
+      className: ""
+
+      # -- Ingress annotations
+      annotations: {}
+
+      # -- Ingress hosts
+      hosts: []
+        # - host: mcp.chart-example.local
+        #   paths:
+        #     - path: /
+        #       pathType: ImplementationSpecific
+
+      # -- Ingress tls
+      tls: []
 
     httproute:
       # -- Enable HTTPRoute resource (Gateway API alternative to Ingress)
