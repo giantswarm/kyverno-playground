@@ -1,6 +1,6 @@
 # kyverno-playground
 
-Please add description
+Kyverno Playground Web Application
 
 **Homepage:** <https://github.com/giantswarm/kyverno-playground>
 
