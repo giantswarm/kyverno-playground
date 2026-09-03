@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.2] - 2026-09-03
+
 ### Changed
 
 - changed: push to public OCI registry
@@ -17,5 +19,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - added: Kyverno Playground AppChart.
 
-[Unreleased]: https://github.com/giantswarm/kyverno-playground/compare/v0.0.1...HEAD
+[Unreleased]: https://github.com/giantswarm/kyverno-playground/compare/v0.0.2...HEAD
+[0.0.2]: https://github.com/giantswarm/kyverno-playground/compare/v0.0.1...v0.0.2
 [0.0.1]: https://github.com/giantswarm/kyverno-playground/releases/tag/v0.0.1

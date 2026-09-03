@@ -15,7 +15,7 @@ home: https://github.com/giantswarm/kyverno-playground
 icon: https://s.giantswarm.io/app-icons/giantswarm/1/light.svg
 sources:
   - https://github.com/some-org/some-repo
-version: 0.0.1
+version: 0.0.2
 annotations:
   # Adapt to 'giantswarm' if this application is not to be deployed by customers
   io.giantswarm.application.audience: all
