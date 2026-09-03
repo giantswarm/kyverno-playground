@@ -10,7 +10,7 @@ appVersion: v0.10.4
 name: kyverno-playground
 
 # Please describe what the app provides in a sentence or two.
-description: Please add description
+description: Kyverno Playground Web Application
 
 # URL of the GitHub repository that is the source of this Chart.yaml file.
 home: https://github.com/giantswarm/kyverno-playground
