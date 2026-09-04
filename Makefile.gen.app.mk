@@ -2,7 +2,7 @@
 #
 #    devctl
 #
-#    https://github.com/giantswarm/devctl/blob/6f591879b95d03922e2283781cd0ac9d796d5a71/pkg/gen/input/makefile/internal/file/Makefile.gen.app.mk.template
+#    https://github.com/giantswarm/devctl/blob/3b8c69a16e2ee7bc82d5a282d7585858799f4149/pkg/gen/input/makefile/internal/file/Makefile.gen.app.mk.template
 #
 
 ##@ App
@@ -41,7 +41,6 @@ $(DEPS): check-env ## Update main Chart.yaml with new local dep versions.
 
 helm-docs: check-env ## Update $(APPLICATION) README.
 	$(HELM_DOCS) -c helm/$(APPLICATION) -g helm/$(APPLICATION)
-	$(HELM_DOCS) -c helm/$(APPLICATION)/charts/$(APPLICATION) -g helm/$(APPLICATION)/charts/$(APPLICATION)
 
 check-env:
 ifndef APPLICATION

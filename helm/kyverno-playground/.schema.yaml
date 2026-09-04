@@ -11,6 +11,7 @@
 # The generated app-platform file goes first so keys the chart defines itself
 # in values.yaml keep their own schema on merge.
 values:
+  - helm/kyverno-playground/zz_generated.app-platform.values.yaml
   - helm/kyverno-playground/values.yaml
 
 draft: 2020
