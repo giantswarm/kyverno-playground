@@ -57,8 +57,8 @@ Kyverno Playground Web Application
 | kyverno-playground.httproute.parentRefs | list | `[]` | Gateway API parentRefs (list of Gateway references) Must reference an existing Gateway resource |
 | kyverno-playground.httproute.hostnames | list | `[]` | List of hostnames for HTTPRoute |
 | kyverno-playground.httproute.rules | list | `[{"matches":[{"path":{"type":"PathPrefix","value":"/"}}]}]` | HTTPRoute rules configuration Allows advanced routing with matches and filters |
-| kyverno-playground.resources.limits | string | `nil` | Container resource limits |
-| kyverno-playground.resources.requests | string | `nil` | Container resource requests |
+| kyverno-playground.resources.limits | object | `{"ephemeral-storage":"512Mi"}` | Container resource limits |
+| kyverno-playground.resources.requests | object | `{"ephemeral-storage":"64Mi"}` | Container resource requests |
 | kyverno-playground.autoscaling.enabled | bool | `false` | Enable autoscaling |
 | kyverno-playground.autoscaling.minReplicas | int | `1` | Min number of replicas |
 | kyverno-playground.autoscaling.maxReplicas | int | `100` | Max number of replicas |

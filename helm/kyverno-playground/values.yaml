@@ -185,11 +185,13 @@ kyverno-playground:
     limits:
       # cpu: 100m
       # memory: 128Mi
+      ephemeral-storage: 512Mi
 
     # -- Container resource requests
     requests:
       # cpu: 100m
       # memory: 128Mi
+      ephemeral-storage: 64Mi
 
   autoscaling:
     # -- Enable autoscaling
