@@ -535,12 +535,24 @@
                     "additionalProperties": false,
                     "properties": {
                         "limits": {
-                            "type": "null",
-                            "description": "Container resource limits"
+                            "type": "object",
+                            "description": "Container resource limits",
+                            "additionalProperties": false,
+                            "properties": {
+                                "ephemeral-storage": {
+                                    "type": "string"
+                                }
+                            }
                         },
                         "requests": {
-                            "type": "null",
-                            "description": "Container resource requests"
+                            "type": "object",
+                            "description": "Container resource requests",
+                            "additionalProperties": false,
+                            "properties": {
+                                "ephemeral-storage": {
+                                    "type": "string"
+                                }
+                            }
                         }
                     }
                 },
